@@ -3,6 +3,7 @@ import Note from '../models/note';
 export const getNotes = () => {
   return Note.find({}).then((notes) => {
     return notes.reduce((result, item) => {
+      // eslint-disable-next-line no-param-reassign
       result[item.id] = item;
       return result;
     }, {});
@@ -30,6 +31,7 @@ export const updateNote = (id, fields) => {
     .then((note) => {
       // check out this classy way of updating only the fields necessary
       Object.keys(fields).forEach((k) => {
+        // eslint-disable-next-line no-param-reassign
         note[k] = fields[k];
       });
       return note.save();
